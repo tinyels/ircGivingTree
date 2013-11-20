@@ -1,0 +1,26 @@
+<div class="container">
+  <input type="search" ng-model="query" name="query" placeholder="search">
+  <br/>
+  <table class="table .table-condensed">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>First Name</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Nationality</th>
+        <th>Select</th>
+      </tr>
+    </thead>
+    <tbody ng-repeat="group in groups">
+      <tr ng-repeat="r in group | filter:query">
+        <td>{{r.code}}</td>
+        <td>{{r.name}}</td>
+        <td>{{r.age}}</td>
+        <td>{{r.gender}}</td>
+        <td>{{r.nationality}}</td>
+        <td><a class="btn btn-primary btn-xs" href="#/signup/{{r._id.$oid}}">Sign me up!</a></td>
+      </tr>
+    </tbody>
+  </table>
+ </div>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+  <script data-require="underscore.js@1.5.1" data-semver="1.5.1" src="//cdn.jsdelivr.net/underscorejs/1.5.1/underscore-min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+  <script src="mongolabResourceHttp.js"></script>
+  <script src="app.js"></script>
+    
+  </script>
+  <title>IRC Giving Tree at UUCA 2013</title>
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <link href="http://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
+  <script src="http://getbootstrap.com/dist/js/bootstrap.js"></script>
+
+  <style type="text/css" media="all">
+    .table > tbody + tbody {
+      border-top: 6px solid #dddddd;
+    }
+    .jumbotron {
+      font-size: 18px;
+      line-height: 1.2;
+      margin-bottom: 15px;
+      padding-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">IRC Giving Tree at UUCA 2013</a>
+      </div>
+    </div>
+  </div>
+  <div class="jumbotron">
+    <div class="container">
+      <h2>Share the Holiday Spirit with a Refugee</h2>
+      <p>Once again, our congregation has the chance to welcome a refugee to Atlanta by providing a holiday gift (tax deductible) through the International Rescue Committee. It’s easy!</p>
+      <ul>
+        <li>Sign up for an individual or a family below.</li>
+        <li>Buy a gift or gifts ( <a href="https://drive.google.com/file/d/0B5ksfRozo0JnSUk4N2dBR0YwZVU/edit?usp=sharing">suggestion list is provided</a>
+          ) and fill out the <a href="https://drive.google.com/file/d/0B5ksfRozo0JnUEVMMTR0UWpuaDg/edit?usp=sharing">gift form</a>
+        </li>
+        <li>Bring gifts and forms to UUCA on Sunday December 8 or 15</li>
+      </ul>
+      <p>Note that the window of opportunity is shorter this year. Please plan to bring your gift(s) to UUCA no later than <strong>Sunday, December 15</strong>.</p>
+    </div>
+  </div>
+  <div ng-view=""></div>
+</body>
+</html>

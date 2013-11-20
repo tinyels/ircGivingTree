@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        You have agreed to bring gifts for the following:
+      </h3>
+    </div>
+    <div class="panel-body">
+       <table class="table .table-condensed">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Nationality</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody ng-repeat="group in groups">
+          <tr ng-repeat="r in group">
+            <td>{{r.code}}</td>
+            <td>{{r.name}}</td>
+            <td>{{r.age}}</td>
+            <td>{{r.gender}}</td>
+            <td>{{r.nationality}}</td>
+            <td><button ng-click="removeMe(r._id.$oid)" class="btn btn-danger btn-xs">Cancel</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <a  class="btn btn-primary btn-md" href="#/">Choose more</a>
+      <button class="btn btn-default btn-md" ng-click="clearUser()">I'm Done </button>
+    </div>
+  </div>
+</div>
