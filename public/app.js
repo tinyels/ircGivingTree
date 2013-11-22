@@ -85,6 +85,7 @@ function ThanksCtrl($scope, $location, Recipient, UserService) {
       Recipient.getById(id,
         function(recipient) {
           delete recipient.donor;
+          recipient.lastModified = GetTimeStamp();
           recipient.$saveOrUpdate().then(function() {
             $scope.updateView();
           });
@@ -95,7 +96,8 @@ function ThanksCtrl($scope, $location, Recipient, UserService) {
     UserService.user = { //todo: this should be moved into service
       name: '',
       phone: '',
-      email: ''
+      email: '',
+      emailConfirmation:''
     };
     $location.path('/');
   };
@@ -104,11 +106,9 @@ function ThanksCtrl($scope, $location, Recipient, UserService) {
 }
 
 function SignUpCtrl($scope, $location, $routeParams, Recipient, UserService) {
-  $scope.emailConfirmation = '';
+  $scope.emailConfirmation = UserService.user.emailConfirmation;
   Recipient.getById($routeParams.recipentId, function(recipient) {
-
     $scope.recipient = recipient;
-    
     if (recipient.gender === "M"){
       $scope.desc = recipient.age > 17 ?"man":"boy";
       $scope.pronoun = "His";
@@ -122,9 +122,22 @@ function SignUpCtrl($scope, $location, $routeParams, Recipient, UserService) {
   });
 
   $scope.addDonor = function() {
+    $scope.recipient.lastModified = GetTimeStamp();
     UserService.user = _($scope.recipient.donor).clone();
+    UserService.user.emailConfirmation = $scope.emailConfirmation;
     $scope.recipient.$saveOrUpdate().then(function() {
       $location.path('/thanks'); //todo: consider thank you and printable report
     });
   };
+}
+
+function GetTimeStamp(){
+  function pad(n){return n<10 ? '0'+n : n}
+  var d = new Date();
+  return d.getUTCFullYear()+'-'
+    + pad(d.getUTCMonth()+1)+'-'
+    + pad(d.getUTCDate())+'T'
+    + pad(d.getUTCHours())+':'
+    + pad(d.getUTCMinutes())+':'
+    + pad(d.getUTCSeconds())+'Z';
 }
