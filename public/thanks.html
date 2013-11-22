@@ -1,16 +1,17 @@
-<div ng-show="!groups">
-   <center><h3>Please wait while we load the list ....<h3>
+<div class="container wrapper">
+  <div ng-show="!groups">
+     <center><h3>Please wait while we load the list ....<h3>
       <img src="loading.gif">
     </center>
-</div>
-<div ng-show="groups" class="container">
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      <h3 class="panel-title">
-        You have agreed to bring gifts for the following:
-      </h3>
-    </div>
-    <div class="panel-body">
+  </div>
+  <div ng-show="groups">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          You have agreed to bring gifts for the following:
+        </h3>
+      </div>
+      <div class="panel-body">
        <table class="table .table-condensed">
         <thead>
           <tr>
@@ -33,7 +34,7 @@
           </tr>
         </tbody>
       </table>
-      <a  class="btn btn-primary btn-md" href="#/">Choose more</a>
+      <a class="btn btn-primary btn-md" href="#/list">Choose more</a>
       <button class="btn btn-default btn-md" ng-click="clearUser()">I'm Done </button>
     </div>
   </div>

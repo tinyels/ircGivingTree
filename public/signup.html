@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container wrapper">
   <div class="panel panel-primary">
     <div class="panel-heading">
       <h3 class="panel-title">
@@ -12,34 +12,22 @@
         </center>
       </div>
       <div ng-show="recipient">
-        Please enter your information if you wish to buy gifts for this person.
-        <table class="table table-bordered">
-          <thead>
-            <tr><th>#</th><th>First Name</th><th>Age</th><th>Gender</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{{recipient.code}}</td>
-              <td>{{recipient.name}}</td>
-              <td>{{recipient.age}}</td>
-              <td>{{recipient.gender}}</td>
-            </tr>
-          </tbody>
-        </table>
+        <p>You have selected <strong>{{recipient.name}}</strong>, a {{recipient.age}} year old {{desc}} from {{recipient.nationality}}. {{pronoun}} code is {{recipient.code}}.
+        <p>Please enter your information if you wish to buy gifts for this person.</p>
         <form name="myForm" role="form">
-          <div class="control-group form-group" ng-class="{error: myForm.name.$invalid}">
+          <div class="form-group" ng-class="{error: myForm.name.$invalid}">
             <label for="name">My Name</label>
             <input class="form-control" type="text" name="name" ng-model="recipient.donor.name" required>
             <span ng-show="myForm.name.$error.required" class="help-inline">
                 Required</span>
           </div>
-          <div class="control-group  form-group" ng-class="{error: myForm.phone.$invalid}">
+          <div class=" form-group" ng-class="{error: myForm.phone.$invalid}">
             <label for="phone">Telephone</label>
             <input class="form-control" type="tel" name="phone" ng-model="recipient.donor.phone" required>
             <span ng-show="myForm.phone.$error.required" class="help-inline">
                 Required</span>
           </div>
-          <div class="control-group form-group" ng-class="{error: myForm.email.$invalid}">
+          <div class="form-group" ng-class="{error: myForm.email.$invalid}">
             <label for="email">E-mail</label>
             <input class="form-control" type="email" name="email" ng-model="recipient.donor.email" required>
             <span ng-show="myForm.email.$error.required" class="help-inline">

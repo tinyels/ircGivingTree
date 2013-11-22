@@ -3,6 +3,10 @@ config(function($routeProvider) {
   $routeProvider.
   when('/', {
     controller: ListCtrl,
+    templateUrl: 'intro.html'
+  }).
+  when('/list', {
+    controller: ListCtrl,
     templateUrl: 'list.html'
   }).
   when('/signup/:recipentId', {
@@ -29,7 +33,6 @@ app.factory('Recipient', function($mongolabResourceHttp) {
 
 //want to preserve the user's info once it has been entered (//todo explicit clearing of it)
 app.factory('UserService', [
-
   function() {
     return {
       user: {
@@ -41,7 +44,19 @@ app.factory('UserService', [
   }
 ]);
 
-//todo:clearUserCtrl
+// http://stackoverflow.com/questions/17475595/how-can-i-make-a-directive-in-angularjs-to-validate-email-or-password-confirmati
+app.directive('match', function($parse) { 
+  return {
+    require: 'ngModel',
+    link: function(scope, elem, attrs, ctrl) {
+      scope.$watch(function() {        
+        return $parse(attrs.match)(scope) === ctrl.$modelValue;
+      }, function(currentValue) {
+        ctrl.$setValidity('mismatch', currentValue);
+      });
+    }
+  };
+});
 
 function ListCtrl($scope, Recipient) {
   Recipient.query({
@@ -89,8 +104,18 @@ function ThanksCtrl($scope, $location, Recipient, UserService) {
 }
 
 function SignUpCtrl($scope, $location, $routeParams, Recipient, UserService) {
+  $scope.emailConfirmation = '';
   Recipient.getById($routeParams.recipentId, function(recipient) {
+
     $scope.recipient = recipient;
+    
+    if (recipient.gender === "M"){
+      $scope.desc = recipient.age > 17 ?"man":"boy";
+      $scope.pronoun = "His";
+    }else{
+      $scope.desc = recipient.age > 17 ? "woman":"girl";
+      $scope.pronoun = "Her";
+    }
     if (!$scope.recipient.donor && UserService.user) {
       $scope.recipient.donor = _(UserService.user).clone();
     }
