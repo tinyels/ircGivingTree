@@ -34,7 +34,7 @@
             <input class="form-control" type="email" name="email" ng-model="recipient.donor.email" required>
           </div>
           <div class="form-group" ng-class="{error: myForm.emailConfirm.$invalid}">
-            <label for="emailConfirm">Confirm Email</label>
+            <label for="emailConfirm">Confirm E-mail</label>
             <span ng-show="myForm.emailConfirm.$error.mismatch" class="help-inline">Email and Confirm Email must match.</span>
             <input class="form-control" type="text" name="emailConfirm" ng-model="emailConfirmation"  required match="recipient.donor.email" />
           </div>
