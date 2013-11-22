@@ -16,11 +16,22 @@
     .table > tbody + tbody {
       border-top: 6px solid #dddddd;
     }
-    .jumbotron {
-      font-size: 18px;
-      line-height: 1.2;
-      margin-bottom: 15px;
-      padding-bottom: 5px;
+    .wrapper { 
+      margin-top: 75px;
+    }
+    #search{
+      top: 13px;
+      right: 15px;
+      position: fixed;
+      z-index: 2999;
+    }
+    .instructions {
+      padding:20px;
+     background-color: snow;
+    }
+    .help-inline{
+      color:red;
+      font-style: italic;
     }
   </style>
 </head>
@@ -32,19 +43,9 @@
       </div>
     </div>
   </div>
-  <div class="jumbotron">
-    <div class="container">
-      <h2>Share the Holiday Spirit with a Refugee</h2>
-      <p>Once again, our congregation has the chance to welcome a refugee to Atlanta by providing a holiday gift (tax deductible) through the International Rescue Committee. It’s easy!</p>
-      <ul>
-        <li>Sign up for an individual or a family below.</li>
-        <li>Buy a gift or gifts (<a href="WishList2013.pdf" target="_blank">suggestion list is provided</a>) and fill out the <a href="UUCAInstructions2013.pdf" target="_blank">gift form</a>
-        </li>
-        <li>Bring gifts and forms to UUCA on Sunday December 8 or 15</li>
-      </ul>
-      <p>Note that the window of opportunity is shorter this year. Please plan to bring your gift(s) to UUCA no later than <strong>Sunday, December 15</strong>.</p>
-    </div>
+  <div id="wrap" style="margin-top:50px" ng-view=""></div>
+  <div class="container">
+    <div id="footer">Contact estanfill@uuca.org if you have any questions.</div>
   </div>
-  <div ng-view=""></div>
 </body>
 </html>
