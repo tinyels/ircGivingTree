@@ -12,33 +12,36 @@
         </center>
       </div>
       <div ng-show="recipient">
-        <p>You have selected <strong>{{recipient.name}}</strong>, a {{recipient.age}} year old {{desc}} from {{recipient.nationality}}. {{pronoun}} code is {{recipient.code}}.
+        <p>You have selected <strong>{{recipient.name}}</strong>, a {{recipient.age}} year old {{desc}} from {{recipient.nationality}}. {{pronoun}} code is {{recipient.code}}.</p>
         <p>Please enter your information if you wish to buy gifts for this person.</p>
         <form name="myForm" role="form">
           <div class="form-group" ng-class="{error: myForm.name.$invalid}">
             <label for="name">My Name</label>
+            <span ng-show="myForm.name.$error.required" class="help-inline">*</span>
             <input class="form-control" type="text" name="name" ng-model="recipient.donor.name" required>
-            <span ng-show="myForm.name.$error.required" class="help-inline">
-                Required</span>
           </div>
           <div class=" form-group" ng-class="{error: myForm.phone.$invalid}">
             <label for="phone">Telephone</label>
+            <span ng-show="myForm.phone.$error.required" class="help-inline">*</span>
             <input class="form-control" type="tel" name="phone" ng-model="recipient.donor.phone" required>
-            <span ng-show="myForm.phone.$error.required" class="help-inline">
-                Required</span>
           </div>
           <div class="form-group" ng-class="{error: myForm.email.$invalid}">
             <label for="email">E-mail</label>
-            <input class="form-control" type="email" name="email" ng-model="recipient.donor.email" required>
-            <span ng-show="myForm.email.$error.required" class="help-inline">
-                Required</span>
+            <span ng-show="myForm.email.$error.required" class="help-inline">*</span>
             <span ng-show="myForm.email.$error.email" class="help-inline">
-                Not an email address</span>
+              Not an email address
+            </span>
+            <input class="form-control" type="email" name="email" ng-model="recipient.donor.email" required>
+          </div>
+          <div class="form-group" ng-class="{error: myForm.emailConfirm.$invalid}">
+            <label for="emailConfirm">Confirm Email</label>
+            <span ng-show="myForm.emailConfirm.$error.mismatch" class="help-inline">Email and Confirm Email must match.</span>
+            <input class="form-control" type="text" name="emailConfirm" ng-model="emailConfirmation"  required match="recipient.donor.email" />
           </div>
           <br>
           <a href="#/" class="btn">Cancel</a>
           <button ng-click="addDonor()" ng-disabled="myForm.$invalid"
-                  class="btn btn-primary">Signup</button>
+          class="btn btn-primary">Signup</button>
         </form>
       </div>
     </div>
