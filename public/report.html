@@ -1,0 +1,38 @@
+<input type="search" class="search-query" id="search" ng-model="query" name="query" placeholder="Search...">
+<div class="container wrapper">
+  <div ng-show="!groups">
+    <center><h3>Please wait while we load the list ....<h3>
+      <img src="loading.gif" />
+    </center>
+  </div>
+  <div ng-show="groups" >
+    <p class="instructions">This is a report indicating who has signed up for which recipients </p>
+    <div class="panel panel-default"  ng-repeat="group in groups | orderBy:'group[0].donor.name'">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{group[0].donor.name}} ({{group[0].donor.email}}, {{group[0].donor.phone}})</h3>
+      </div>
+      <div class="panel-body">
+        <table  class="table .table-condensed">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>First Name</th>
+              <th>Age</th>
+              <th>Gender</th>
+              <th>Nationality</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="r in group | filter:query">
+              <td>{{r.code}}</td>
+              <td>{{r.name}}</td>
+              <td>{{r.age}}</td>
+              <td>{{r.gender}}</td>
+              <td>{{r.nationality}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
