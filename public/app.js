@@ -17,6 +17,10 @@ config(function($routeProvider) {
     controller: ThanksCtrl,
     templateUrl: 'thanks.html'
   }).
+  when('/report', {
+    controller: ReportCtrl,
+    templateUrl: 'report.html'
+  }).
   otherwise({
     redirectTo: '/'
   });
@@ -69,7 +73,17 @@ function ListCtrl($scope, Recipient) {
     });
   });
 }
-
+function ReportCtrl($scope, Recipient) {
+  Recipient.query({
+    "donor": {
+      "$exists": true
+    }
+  }, function(recipients) {
+    $scope.groups = _.groupBy(recipients, function(r) {
+      return r.donor.name;
+    });
+  });
+}
 function ThanksCtrl($scope, $location, Recipient, UserService) {
   $scope.updateView = function() {
     Recipient.query({
@@ -91,6 +105,7 @@ function ThanksCtrl($scope, $location, Recipient, UserService) {
           });
         });
     }
+
   };
   $scope.clearUser = function() {
     UserService.user = { //todo: this should be moved into service

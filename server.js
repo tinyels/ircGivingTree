@@ -9,6 +9,9 @@ var oneDay = 86400000;
 app.use(express.compress());
 
 // Serve up content from public directory
-app.use(express.static(__dirname + '/public', { maxAge: oneDay }));
+//app.use(express.static(__dirname + '/public', { maxAge: oneDay }));
+
+//turning off caching for the time being
+app.use(express.static(__dirname + '/public'));
 
 app.listen(process.env.PORT || 3000);
