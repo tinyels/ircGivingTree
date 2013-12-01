@@ -21,6 +21,10 @@ config(function($routeProvider) {
     controller: ReportCtrl,
     templateUrl: 'report.html'
   }).
+  when('/reportByCode', {
+    controller: ReportByCodeCtrl,
+    templateUrl: 'reportByCode.html'
+  }).
   otherwise({
     redirectTo: '/'
   });
@@ -81,6 +85,16 @@ function ReportCtrl($scope, Recipient) {
   }, function(recipients) {
     $scope.groups = _.groupBy(recipients, function(r) {
       return r.donor.name;
+    });
+  });
+}
+
+function ReportByCodeCtrl($scope, Recipient){
+  Recipient.query({
+  }, function(recipients) {
+    var sorted = _.sortBy(recipients, function (r) {return r.code})
+    $scope.groups = _(sorted).groupBy(function(r) {
+      return r.code.slice(0, -1);
     });
   });
 }
