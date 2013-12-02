@@ -72,7 +72,8 @@ function ListCtrl($scope, Recipient) {
       "$exists": false
     }
   }, function(recipients) {
-    $scope.groups = _.groupBy(recipients, function(r) {
+    var sorted = _.sortBy(recipients, function (r) {return r.code})
+    $scope.groups = _(sorted).groupBy(function(r) {
       return r.code.slice(0, -1);
     });
   });
