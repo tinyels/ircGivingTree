@@ -2,7 +2,7 @@ var app = angular.module('app', ['mongolabResourceHttp']).
 config(function($routeProvider) {
   $routeProvider.
   when('/', {
-    controller: ListCtrl,
+    controller: IntroCtrl,
     templateUrl: 'intro.html'
   }).
   when('/list', {
@@ -53,11 +53,11 @@ app.factory('UserService', [
 ]);
 
 // http://stackoverflow.com/questions/17475595/how-can-i-make-a-directive-in-angularjs-to-validate-email-or-password-confirmati
-app.directive('match', function($parse) { 
+app.directive('match', function($parse) {
   return {
     require: 'ngModel',
     link: function(scope, elem, attrs, ctrl) {
-      scope.$watch(function() {        
+      scope.$watch(function() {
         return $parse(attrs.match)(scope) === ctrl.$modelValue;
       }, function(currentValue) {
         ctrl.$setValidity('mismatch', currentValue);
@@ -65,6 +65,10 @@ app.directive('match', function($parse) {
     }
   };
 });
+
+function IntroCtrl($scope){
+
+}
 
 function ListCtrl($scope, Recipient) {
   Recipient.query({
