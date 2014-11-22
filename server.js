@@ -1,15 +1,10 @@
-// see http://blog.modulus.io/nodejs-and-express-static-content
-var express = require('express');
-var app = express();
+var compression = require('compression')
+var express = require('express')
 
-// The number of milliseconds in one day
-var oneDay = 86400000;
+var app = express()
 
-// Use compress middleware to gzip content
-app.use(express.compress());
-
-// Serve up content from public directory
-//app.use(express.static(__dirname + '/public', { maxAge: oneDay }));
+// compress all requests
+app.use(compression())
 
 //turning off caching for the time being
 app.use(express.static(__dirname + '/public'));
