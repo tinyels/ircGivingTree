@@ -105,7 +105,7 @@ function ReportByCodeCtrl($scope, Recipient){
 function ThanksCtrl($scope, $location, Recipient, UserService) {
   $scope.updateView = function() {
     Recipient.query({
-      "donor.email": UserService.user.email
+      "donor.name": UserService.user.name
     }, function(recipients) {
       $scope.groups = _.groupBy(recipients, function(r) {
         return r.code.slice(0, -1);
