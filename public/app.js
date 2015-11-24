@@ -32,7 +32,7 @@ config(function($routeProvider) {
 
 app.constant('MONGOLAB_CONFIG', {
   API_KEY: '6yUcWaRsw1eG5lYnPY_elelU1dgPt5Je',
-  DB_NAME: 'dev_gift_tree'
+  DB_NAME: 'irc_giving_tree'
 });
 
 app.factory('Recipient', function($mongolabResourceHttp) {
